@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elly &#9829; Ahmad</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="shortcut icon" href="asset/image/favicon.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js" integrity="sha256-8WqyJLuWKRBVhxXIL1jBDD7SDxU936oZkCnxQbWwJVw=" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
+</head>
+
+<body onload="toggle(),create_unfinished_task()">
+    <div id="popup">
+        <div class="title">
+            <div class="sampul-foto">
+                <img src="asset/image/sampul-devy.png" alt="" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">
+            </div>
+            <div class="sampul-text">
+                <div class="nama-undangan">
+                    <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">Yth :</h3>
+                    <h3 id="to" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">Agung </h3>
+                </div>
+                <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">Welcome To</h3>
+                <h3 data-aos="fade-down" data-aos-easing="linear" data-aos-duration="3000">The Wedding Celebration of</h3>
+                <div class="sampul-name">
+                    <img src="asset/image/sampul-name.png" alt="" data-aos="zoom-in" data-aos-easing="linear" data-aos-duration="3000">
+                </div>                
+                <a href="#"  onclick="toggle(), playing()" data-aos="zoom-in" data-aos-duration="3000">
+                    <img src="asset/image/open_inv.png" alt="" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="song" hidden loop> 
+        <source src="asset/audio/i.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div id="top">
+        <div class="top-wrapper"> 
+            <div class="cover-top">
+                <img src="asset/image/sampul-Elly.png" alt="">
+            </div>
+            <div class="content-top">
+                <img src="asset/image/top-we.png" alt="" class="image-smaller">
+                <img src="asset/image/sampul-name.png" alt="">
+            </div>
+        </div>
+    </div>
+    
+    <div class="arrum-section">
+        <div class="arrum-ornamen" data-aos="fade-up" data-aos-duration="3000">
+            <img src="asset/image/On Al Isra.png" alt="">
+        </div>
+        <div class="arrum-box" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
+            <img src="asset/image/box-arrum.png" alt="">
+        </div>
+        <div class="content-isra" data-aos="fade-up" data-aos-duration="3000">
+            <p>“Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu 
+                istri-istri dari jenismu sendiri, supaya kamu cenderung dan merasa
+                tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang.
+                Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda 
+                bagi kaum yang berfikir. ”</p>
+            <h3><b>( Q.S Ar Rum: 21 )</b></h3>
+        </div>
+    </div>
+
+    <section>
+        <div class="bride-groom">
+            <div class="foto-mempelai" data-aos="zoom-in" data-aos-duration="3000">
+                <img src="asset/image/ahmadelly.png" alt="">
+            </div>
+            <div class="bride">
+                <!-- <div class="Elly-photo" data-aos="fade-right" data-aos-duration="3000">
+                    <img src="asset/image/EllyP.png" alt="">
+                </div> -->
+                <div class="devy-name" data-aos="fade-up" data-aos-duration="3000">
+                    <img src="asset/image/Elly.png" alt="">
+                </div>
+            </div>
+            <div class="groom">
+                <!-- <div class="Ahmad-photo" data-aos="fade-down" data-aos-duration="3000">
+                    <img src="asset/image/AhmadP.png" alt="">
+                </div> -->
+                <div class="anthony-name" data-aos="fade-right" data-aos-duration="3000">
+                    <img src="asset/image/Ahmad.png" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="counting">
+        <div class="container-counting">
+            <div class="ornamen2" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
+                <img src="asset/image/box-counting.png" alt="">
+            </div>
+            <div class="count-down" data-aos="fade-right" data-aos-duration="3000">
+                <p>Counting down to the big day</p>
+                <div class="time">
+                    <div id="habis"></div>
+                    <div class="times" id="times">
+                        <div id="day"></div>
+                        <div class="font-smaller">day(s)</div>
+                    </div>
+
+                    <div class="separator" id="separator">:</div>
+                    
+                    <div class="times" id="times1">
+                        <div id="hour"></div>
+                        <div class="font-smaller">hour(s)</div>
+                    </div>
+                    
+                    <div class="separator" id="separator1">:</div>
+                    
+                    <div class="times" id="times2">
+                        <div id="minute"></div>
+                        <div class="font-smaller">minute(s)</div>
+                    </div>
+                    
+                    <div class="separator" id="separator2"> :</div>
+                    
+                    <div class="times" id="times3">
+                        <div id="second"></div>
+                        <div class="font-smaller">second(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="date">
+        <div class="save-the-date" data-aos="fade-up" data-aos-duration="3000">
+            <img src="asset/image/save the date.png" alt="">
+        </div>
+        <div class="text-date" data-aos="fade-right" data-aos-duration="3000">
+            <img src="asset/image/date.png" alt="">
+            <div class="line-date">
+                <img src="asset/image/line date.png" alt="">
+            </div>
+            <p>Pukul 11.00 - 13.00</p>
+        </div>
+        <div class="location" data-aos="fade-up" data-aos-duration="3000">
+            <img src="asset/image/location.png" alt="">
+            <a href="https://goo.gl/maps/qQ2kUtMVmL1oukdZ6" data-aos="fade-up" data-aos-duration="3000" target="_blank">
+                <img src="asset/image/direction.png" alt="">
+            </a>
+        </div>
+    </div>
+
+     <div class="sorry-protokol">
+         <div class="sorry">
+            <p  data-aos="fade-up" data-aos-duration="3000">
+                Tanpa mengurangi rasa hormat sehubungan dengan situasi pandemi COVID-19 
+                kami memohon maaf yang sebesar-besarnya karena hanya dapat mengundang 
+                keluarga dan kerabat terdekat, kami mengundang Bapak/Ibu/Saudara/i berkenan
+                untuk turut memberikan doa restu serta turut ambil bagian dalam momen penyatuan
+                cinta kami yang dapat disaksikan melalui siaran live streaming di tautan berikut. 
+            </p>
+            <p data-aos="fade-up" data-aos-duration="3000">Meeting ID: <b style="color: black;" >899 5716 5555</b></p>
+            <p data-aos="fade-up" data-aos-duration="3000">Passcode: <b style="color: black;" >HUSEN354</b></p>         
+        </div>
+        <a href="https://us02web.zoom.us/j/89957165555?pwd=ZVhFRHM4NUMxUmg3Q0dYOVRDMVZPdz09" target="_blank" data-aos="fade-right" data-aos-duration="3000">
+            <img src="asset/image/live streaming.png" alt="">
+        </a>
+        <div class="protokol" data-aos="fade-up" data-aos-duration="3000">
+            <img src="asset/image/Prokes.png" alt="">
+        </div>
+    </div>
+
+    <div class="gallery-photo">
+        <div class="gallery-title" data-aos="fade-up" data-aos-duration="3000">
+            <h2>Our Gallery</h2>
+        </div>
+        <div class="swiper mySwiper" data-aos="fade-up" data-aos-duration="3000">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"><img src="asset/image/gallery/1.jpg" alt=""></div>
+              <div class="swiper-slide"><img src="asset/image/gallery/2.jpg" alt=""></div>
+              <!-- <div class="swiper-slide"><img src="asset/image/gallery/3.jpg" alt=""></div>
+              <div class="swiper-slide"><img src="asset/image/gallery/4.jpg" alt=""></div> -->
+            </div>
+          </div>
+    </div>
+    
+    <div class="rsvp" data-aos="fade-up" data-aos-duration="3000">
+        <div class="rsvp-title">
+            <h2>RSVP</h2>
+            <p>Kami tidak sabar menunggu hari pernikahan kami bersama Bapak/Ibu/Saudara/i, mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i.</p>
+            <p>Terima Kasih</p>
+        </div>
+        <div class="form-rsvp">
+            <form name="rsvp-Elly-Ahmad">
+                <div class="form-elements">
+                    <input id="nama" name="Nama" placeholder="Nama anda" required />
+                    <br>
+                    <input id="alamat" name="Alamat" placeholder="Alamat anda" required/>
+                    <br>
+                    <div class="hadir-confirm">
+                        <p>
+                            <input type="radio" id="kehadiran" name="Kehadiran" value="Hadir" checked> 
+                            <label for="kehadiran" style="margin-right: 50px;">Hadir</label>
+                            <input type="radio" id="kehadiran1" name="Kehadiran" value="Tidak Hadir">
+                            <label for="kehadiran1">Tidak Hadir</label>
+                        </p>                        
+                    </div>
+                    <!-- <input id="kehadiran" name="Kehadiran" required placeholder="Apakah anda bisa menghadiri acara atau tidak?" /> -->
+                    <div class="btn">
+                        <button type="submit" class="buttonkirim">Send</button>
+                    </div>
+                    <div class="btn-loading">
+                        <button disabled class="buttonload d-none" id="btn-loading">
+                            <i class="fa fa-circle-o-notch fa-spin"></i> Sedang mengirim...
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+
+    <div class="wish-img" data-aos="fade-up" data-aos-duration="3000">
+        <img src="asset/image/wish.png" alt="">
+    </div>
+
+    <div class="contact-us box" >
+        <div data-aos="fade-up" data-aos-duration="3000">
+            <p>Tinggalkan do'a/pesan/harapan untuk Elly & Ahmad</p>
+            <a href="#newcomment">
+                <button> 💌 Tuliskan Pesan..</button>
+            </a>
+
+            <div class="container1"></div>
+
+            <div class="footer-content">
+                
+                <form id="newcomment">
+                    <div class="form-elements1">
+                        <input id="name"  type="text" placeholder="Nama anda / Nama anda sekeluarga" required/>
+                        <textarea id="message" rows="2" placeholder="Tuliskan do'a/pesan/harapan anda disini..." required></textarea>
+                        
+                        <div class="btn">
+                            <button id="input_button" onclick="add_task()" >Send</button>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <div class="thankyou">
+                <h2>Thank You</h2>
+                <h5>Elly & Ahmad<h5>
+            </div>
+        </div>
+    </div> 
+    
+    <div class="footer">
+        <p>Made with full of &#10084; by .</p>
+        <br>
+        <a href="https://undanganmanten.my.id" target="_blank">Undangan Manten.</a>
+    </div>
+    
+    <div class="loader-wrapper">
+        <div id="heart"></div>
+        <br>
+        <p>Elly & Ahmad</p>
+    </div> 
+
+    <!-- <div class="date">
+        <div class="ornamen-date" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="3000">
+            <img src="asset/image/bg-date.png" alt="">
+        </div>
+        <div class="save-date" data-aos="fade-up" data-aos-duration="3000">
+            <p>Save the Date</p>
+        </div> -->
+            <!-- <div class="kediaman" data-aos="fade-up" data-aos-duration="3000">
+                <span>Akad Nikah & Resepsi</span>
+                <p>Pukul 08.00 s/d 12.00 WIB</p>
+            </div>
+            <div class="kediaman" data-aos="fade-up" data-aos-duration="3000">
+                <span>Lokasi</span>
+                <p>Jl. Veteran, Sosutan, Ngantru</p>
+                <p>Trenggalek, Jawa Timur</p>
+            </div>
+            <a href="https://goo.gl/maps/SRMoAk7zMHe2wCuk6" target="_blank" data-aos="zoom-in" data-aos-duration="3000">
+                <img src="asset/image/direction.png" alt="">
+            </a>     -->
+        <!-- <img src="asset/image/tanggal.png" alt="Elly" data-aos="fade-up" data-aos-duration="3000"> -->
+    <!-- </div>
+
+    <div class="date1">
+        <div class="text-block2">
+            <div class="kediaman" data-aos="fade-up" data-aos-duration="3000">
+                <span>Akad Nikah & Resepsi</span>
+                <p>Pukul 08.00 s/d 12.00 WIB</p>
+            </div>
+            <div class="kediaman" data-aos="fade-up" data-aos-duration="3000">
+                <span>Lokasi</span>
+                <p>Jl. Veteran, Sosutan, Ngantru</p>
+                <p>Trenggalek, Jawa Timur</p>
+            </div>
+            <a href="https://goo.gl/maps/SRMoAk7zMHe2wCuk6" target="_blank" data-aos="zoom-in" data-aos-duration="3000">
+                <img src="asset/image/direction.png" alt="">
+            </a>    
+        </div> -->
+        <!-- <div style="margin-bottom: 50px;" class="jarak"></div>
+        <div class="cover-bottom">
+            <img src="asset/image/ornamen-bottom.png" alt="">
+        </div>
+    </div>
+
+    <div class="sorry-protokol">
+        <div class="cover-top">
+            <img src="asset/image/ornamen-top.png" alt="">
+        </div>
+         <div class="sorry">
+            <p  data-aos="fade-up" data-aos-duration="3000">
+                Tanpa mengurangi rasa hormat sehubungan dengan situasi pandemi COVID-19 
+                kami memohon maaf yang sebesar-besarnya karena hanya dapat mengundang 
+                keluarga, kerabat dan teman dEllyt. 
+            </p>         
+        </div>
+        <div class="sorry">
+            <p  data-aos="fade-up" data-aos-duration="3000">
+                Teriring permohonan maaf dan ucapan terimakasih yang tulus, semoga 
+                Bapak/ Ibu/Saudara/i dapat memaklumi kondisi ini, Semoga kita semua 
+                selalu ada dalam keadaan sehat dan dapat melalui situasi ini dengan 
+                sebaik-baiknya.
+            </p> 
+        </div> -->
+        <!-- <div class="protokol" data-aos="fade-up" data-aos-duration="3000">
+            <img src="asset/image/Prokes.png" alt="">
+        </div>
+    </div> -->
+    
+    <!-- <div class="rsvp" data-aos="fade-up" data-aos-duration="3000">
+        <div class="rsvp-title">
+            <h2>RSVP</h2>
+            <p>Kami tidak sabar menunggu hari pernikahan kami bersama Bapak/Ibu/Saudara/i, mohon konfirmasi kehadiran Bapak/Ibu/Saudara/i.</p>
+            <p>Terima Kasih</p>
+        </div>
+        <div class="form-rsvp">
+            <form name="rsvp-Elly-Ahmad">
+                <div class="form-elements">
+                    <input id="nama" name="Nama" placeholder="Nama anda" required />
+                    <br>
+                    <input id="alamat" name="Alamat" placeholder="Alamat anda" required/>
+                    <br>
+                    <div class="hadir-confirm">
+                        <p>
+                            <input type="radio" id="kehadiran" name="Kehadiran" value="Hadir" checked> 
+                            <label for="kehadiran" style="margin-right: 50px;">Hadir</label>
+                            <input type="radio" id="kehadiran1" name="Kehadiran" value="Tidak Hadir">
+                            <label for="kehadiran1">Tidak Hadir</label>
+                        </p>                        
+                    </div>
+                    <input id="kehadiran" name="Kehadiran" required placeholder="Apakah anda bisa menghadiri acara atau tidak?" />
+                    <div class="btn">
+                        <button type="submit" class="buttonkirim">Send</button>
+                    </div>
+                    <div class="btn-loading">
+                        <button disabled class="buttonload d-none" id="btn-loading">
+                            <i class="fa fa-circle-o-notch fa-spin"></i> Sedang mengirim...
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- <div class="wish-img" data-aos="fade-up" data-aos-duration="3000">
+        <img src="asset/image/wish.png" alt="">
+    </div>
+
+    <div class="contact-us box" >
+        <div data-aos="fade-up" data-aos-duration="3000">
+            <p>Tinggalkan do'a/pesan/harapan untuk Elly & Ahmad</p>
+            <a href="#newcomment">
+                <button> 💌 Tuliskan Pesan..</button>
+            </a>
+
+            <div class="container1"></div>
+
+            <div class="footer-content">
+                
+                <form id="newcomment">
+                    <div class="form-elements1">
+                        <input id="name"  type="text" placeholder="Nama anda / Nama anda sekeluarga" required/>
+                        <textarea id="message" rows="2" placeholder="Tuliskan do'a/pesan/harapan anda disini..." required></textarea>
+                        
+                        <div class="btn">
+                            <button id="input_button" onclick="add_task()" >Send</button>
+                        </div> 
+                    </div>
+                </form>
+            </div>
+            <div class="thankyou">
+                <h2>Thank You</h2>
+                <h5>Elly & Ahmad<h5>
+            </div>
+        </div>
+    </div>  -->
+    
+    <!-- <div class="footer">
+        <p>Made with full of &#10084; by .</p>
+        <br>
+        <a href="https://undanganmanten.my.id" target="_blank">Undangan Manten.</a>
+        <div class="cover-bottom">
+            <img src="asset/image/ornamen-bottom.png" alt="">
+        </div>
+    </div> -->
+    
+    <!-- <div class="loader-wrapper">
+        <div id="heart"></div>
+        <br>
+        <p>Elly & Ahmad</p>
+    </div> -->
+    
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script data-cfasync="false" src="js/script.js" type="text/javascript"></script>
+    
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            effect: "cards",
+            loop: true,
+            grabCursor: true,
+        });
+    
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxwn80K1LXtAgG8nKIHHh9AVISihuSRvKmqrc6hUBGsD2ChpOto6mhCO-LuULvPom370Q/exec'
+        const form = document.forms['rsvp-Elly-Ahmad']
+        const btnLoading = document.querySelector('.buttonload');
+        const btnKirim = document.querySelector('.buttonkirim');
+
+        form.addEventListener('submit', e => {
+          e.preventDefault();
+          btnLoading.classList.toggle('d-none');
+          btnKirim.classList.toggle('d-none');
+          document.getElementById("btn-loading").disabled = true;
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                console.log('Success!', response);
+                btnLoading.classList.toggle('d-none');
+                btnKirim.classList.toggle('d-none');
+
+                swal("Terima Kasih!", "Konfirmasi kehadiran anda telah terkirim", "success");
+                form.reset();
+            })
+            .catch(error => {
+                console.error('Error!', error.message);
+                swal("Mohon maaf!", "Konfirmasi kehadiran anda gagal terkirim, mohon untuk mengulangi lagi", "error");
+                btnLoading.classList.toggle('d-none');
+                btnKirim.classList.toggle('d-none');
+            })
+        })
+      </script>
+</body>
+</html>
