@@ -365,7 +365,13 @@ img{
   filter: drop-shadow(5px 5px 5px rgba(3, 157, 154,0.5));
 }
 
-.bride,.groom{
+.bride{
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+.groom{
   width: 100vw;
   height: max-content;
   display: flex;
@@ -376,12 +382,6 @@ img{
 .devy-photo{
   display: flex;
   justify-self: self-start;
-}
-
-.devy-name{
-  width: 100vw;
-  display: flex;
-  justify-content: end!important;
 }
 
 .devy-name img{
